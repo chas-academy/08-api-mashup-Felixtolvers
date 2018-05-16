@@ -1,16 +1,16 @@
 $("#search").click(function(word){
     $("#results img").remove();
+    $("#synonyms a").remove();
     $.ajax({
       url : "http://words.bighugelabs.com/api/2/3e45ddf4a8c5e0fa4a8a70395d4b2cfc/" + $("#searchterm").val() + "/json", 
       dataType : 'json',
       complete : function(jqXHR, textStatus) {
         if (textStatus == 'parsererror') {
-          // Did not find any synonyms
           alert("404 error because no synonyms exist for this word");
         }
       },
       success : function(data) {
-        // Found synonyms
+
         let synArray = data.noun.syn;
 
         $.each(synArray, function (index, value){
